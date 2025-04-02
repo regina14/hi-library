@@ -1,6 +1,6 @@
 package org.devio.hi.library.log;
 
-public class HiLogConfig {
+public abstract class HiLogConfig {
     public String getGlobalTag() {
         return "HiLog";
     }

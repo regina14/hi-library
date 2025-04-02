@@ -1,6 +1,7 @@
 package org.devio.hi.library.app.demo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.devio.hi.library.app.R
 import org.devio.hi.library.log.HiLog
+import org.devio.hi.library.log.HiLogConfig
+import org.devio.hi.library.log.HiLogManager
 
 class HiLogDemoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +22,14 @@ class HiLogDemoActivity : AppCompatActivity() {
     }
 
     private fun printLog(){
+        HiLogManager.init(object : HiLogConfig() {
+            override fun getGlobalTag(): String {
+                return "DemoActivity"
+            }
+            override fun enable(): Boolean {
+                return true
+            }
+        })
         HiLog.a(9900)
     }
 }

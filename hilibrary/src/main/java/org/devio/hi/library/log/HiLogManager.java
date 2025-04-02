@@ -2,16 +2,14 @@ package org.devio.hi.library.log;
 
 import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class HiLogManager {
     private HiLogConfig config;
     private static HiLogManager instance;
+    private boolean isInit = false;
 
-    private HiLogManager(HiLogConfig configonfig){
+    private HiLogManager(HiLogConfig config){
         this.config = config;
+        isInit = true;
     }
 
     public static HiLogManager getInstance() {

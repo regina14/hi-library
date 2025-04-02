@@ -1,9 +1,9 @@
 package org.devio.hi.library.log;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Tips:
@@ -62,6 +62,10 @@ public class HiLog {
     }
 
     public static void log(@HiLogType.TYPE int type, Object... contents) {
+        if (HiLogManager.getInstance().getConfig() == null) {
+            android.util.Log.e("rztest", "HiLogManager is not initialized!");
+            return;
+        }
         log(type, HiLogManager.getInstance().getConfig().getGlobalTag(), contents);
     }
 
@@ -75,7 +79,7 @@ public class HiLog {
         }
         StringBuilder sb = new StringBuilder();
         String body = parseBody(contents);
-        // Log.println(type, tag, body);
+        System.out.printf("type:%s, tag:%s, contents: %s\n", type, tag, contents);
     }
 
     private static String parseBody(@NonNull Object[] contents){
@@ -83,7 +87,7 @@ public class HiLog {
         for (Object o: contents){
             sb.append(o.toString()).append(";");
         }
-        if (sb.length() > 0) sb.deleteCharAt(sb.length());
+        if (sb.length() > 0) sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 }
