@@ -79,7 +79,7 @@ public class HiLog {
         }
         StringBuilder sb = new StringBuilder();
         String body = parseBody(contents);
-        System.out.printf("type:%s, tag:%s, contents: %s\n", type, tag, contents);
+        Log.println(Log.DEBUG, tag, body);
     }
 
     private static String parseBody(@NonNull Object[] contents){
